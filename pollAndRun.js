@@ -9,7 +9,7 @@ function pollAndRun(evaluateFunction, intervalMilliseconds, maxSeconds, executeF
             if (evalResult || ((intervalCounter * intervalMilliseconds) >= (maxSeconds * 1000))) {
                 clearInterval(intervalId);
                 if (evalResult) {
-                    executeFunction();
+                    executeFunction(evalResult);
                 }
             }
         }, intervalMilliseconds);
