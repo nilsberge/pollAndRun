@@ -1,4 +1,4 @@
-function pollAndRun(evaluateFunction, intervalMilliseconds, maxSeconds, executeFunction) {
+function pollAndRun(evaluateFunction, intervalMilliseconds, maxSeconds, executeFunction, fallbackFunction) {
     'use strict';
     var intervalId;
     var intervalCounter = 0;
@@ -10,6 +10,10 @@ function pollAndRun(evaluateFunction, intervalMilliseconds, maxSeconds, executeF
                 clearInterval(intervalId);
                 if (evalResult) {
                     executeFunction(evalResult);
+                } else {
+                    if (fallbackFunction) {
+                        fallbackFunction();
+                    }
                 }
             }
         }, intervalMilliseconds);
